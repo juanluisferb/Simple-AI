@@ -34,7 +34,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] AudioSource _backgroundMusic;
 
     [SerializeField] PauseGame _paused;
-    [SerializeField] DiaryRead _isreadingDiary;
 
     EState _currentState;
     public int _currentPathIndex;
@@ -108,14 +107,6 @@ public class EnemyMovement : MonoBehaviour
             _agent.velocity = Vector3.zero;
             return;
         }
-
-        //Si estoy leyendo un diario o con el juego en pausa, también 
-        if (_isreadingDiary._isReadingDiary)
-        {
-            _agent.velocity = Vector3.zero;
-            return;
-        }
-
 
         if (_paused._paused)
         {
@@ -327,21 +318,11 @@ public class EnemyMovement : MonoBehaviour
 
             //Placeholder de animación de ataque
             _enemyAnimator.SetTrigger("Attack");
-            Debug.Log("TE ZURRO!!");
+
         }
 
     }
 
-    void OnTriggerEnter(Collider coll)
-    {
-        if (coll.CompareTag("Animal"))
-        {
-            if (coll.GetComponent<Rabbit>() != null)
-            {
-                coll.GetComponent<Rabbit>().SetIsFollowing(false);
-            }
-
-        }
-    }
+   
 
 }
